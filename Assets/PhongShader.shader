@@ -94,6 +94,11 @@ Shader "Unlit/PhongShader"
 				float Kd = 1;
 				float3 L = normalize(_PointLightPosition - v.worldVertex.xyz);
 				float LdotN = dot(L, v.worldNormal.xyz);
+				
+				// Toon shading
+				//float4 cel = step(0, LdotN) * v.color;
+				//cel.a = 1;
+
 				float3 dif = fAtt * _PointLightColor.rgb * Kd * v.color.rgb * saturate(LdotN);
 				
 				// Calculate specular reflections
